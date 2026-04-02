@@ -19,11 +19,14 @@ export const handleWebSocketConnection = async (
     const decoded = await verifyToken(token);
     ws.user = decoded;
 
-    const uploadService = new UploadService();
+    // Auth0 tokens typically have the user ID in the 'sub' claim
+    const userId = (decoded as any)?.sub || "unknown";
+
+    const uploadService = new UploadService(userId);
     uploadService.startUpload();
 
     ws.on("close", () => {
-      console.log("Client disconnected or crashed.");
+      console.log("Client disconnected.");
       uploadService.endUpload();
     });
 
