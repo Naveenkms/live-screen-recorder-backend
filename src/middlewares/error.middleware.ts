@@ -16,7 +16,7 @@ const errorMiddleware = (
   }
 
   const status = err instanceof ApiError ? err.status : 500;
-  console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+
   return res.status(status).json({
     success: false,
     message: err.message || "Internal Server Error",
