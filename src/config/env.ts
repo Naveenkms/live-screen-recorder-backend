@@ -11,4 +11,5 @@ export const ENV = {
   S3_BUCKET_NAME: process.env.S3_BUCKET_NAME as string,
   AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE as string,
   MONGODB_URI: process.env.MONGODB_URI as string,
+  ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS as string,
 };

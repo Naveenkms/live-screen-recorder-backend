@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { VideoController } from "../controllers/video.controller";
+import checkJwt from "../middlewares/check-jwt.middleware";
 
-const router = Router();
+const router: Router = Router();
 
-// Endpoint to fetch recordings. Provide userId as query param or route param
-router.get("/user/:userId", VideoController.getUserVideos);
+router.get("/", checkJwt, VideoController.getUserVideos);
+router.get("/download/:videoId", checkJwt, VideoController.downloadVideo);
+router.get("/signed-url/:videoId", checkJwt, VideoController.getSignedUrl);
 
 export default router;
